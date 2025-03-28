@@ -1,0 +1,1 @@
+from backend.application.exceptions.wallet import WalletNotFoundError
