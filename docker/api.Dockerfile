@@ -3,6 +3,7 @@ FROM python:3.12-alpine
 WORKDIR /app
 
 COPY /backend /app/backend
+COPY /tests /app/tests
 COPY /alembic.ini /app
 COPY /requirements.txt /app
 
