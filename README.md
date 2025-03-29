@@ -39,7 +39,7 @@ This project was built as a test assignment, following the principles of **clean
 3. **Start the services using Docker Compose:**
    ```bash
    docker-compose up -d
-   docker exec -it db bash -c alembic upgrade head
+   docker exec -it api sh -c alembic upgrade head
    ```
 
 ---
@@ -105,16 +105,11 @@ curl -X GET "http://localhost:8000/api/event?page=1&page_size=2" -H "accept: app
 docker exec -it db psql -U postgres -c "CREATE DATABASE test;"
 ```
 
-2. **Load Environment Variables**
-
+2. **Run Tests**
+> **Note:** Tests are specially located in the container so that they can be launched with minimal efforts
 ```bash
-export $(grep -v '^#' .env | xargs)
-```
+docker exec -it api sh -c "TEST_DB=test python3 -m pytest tests --asyncio-mode=auto"
 
-3. **Run Tests**
-
-```bash
-TEST_DB=test python3 -m pytest tests --asyncio-mode=auto
 ```
 
 ## API Documentation
